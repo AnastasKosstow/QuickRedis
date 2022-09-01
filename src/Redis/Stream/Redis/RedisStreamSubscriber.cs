@@ -1,6 +1,7 @@
 using StackExchange.Redis;
 using Redis.Common.Extensions;
 using Redis.Common.Serialization;
+using System.Runtime.Serialization;
 
 namespace Redis.Stream;
 
@@ -33,7 +34,8 @@ public sealed class RedisStreamSubscriber : IStreamSubscriber
             var payload = serializer.Deserialize<T>(data);
             if (payload is null)
             {
-                return;
+                string message = $"In {nameof(SubscribeAsync)}\nCannot deserialize payload: {data}";
+                throw new SerializationException(message);
             }
 
             handler(payload);
@@ -59,9 +61,15 @@ public sealed class RedisStreamSubscriber : IStreamSubscriber
             .SubscribeAsync(channel)
             .WaitAndUnwrapException();
 
-        subscription.OnMessage(message =>
+        subscription.OnMessage(channelMessage =>
         {
-            var payload = serializer.Deserialize<T>(message.Message);
+            var payload = serializer.Deserialize<T>(channelMessage.Message);
+            if (payload is null)
+            {
+                string message = $"In {nameof(SubscribeAsync)}\nCannot deserialize payload: {channelMessage.Message}";
+                throw new SerializationException(message);
+            }
+
             handler(payload);
         });
     }

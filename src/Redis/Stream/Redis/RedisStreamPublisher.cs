@@ -1,5 +1,6 @@
 ﻿using StackExchange.Redis;
 using Redis.Common.Serialization;
+using System.Runtime.Serialization;
 
 namespace Redis.Stream;
 
@@ -18,6 +19,12 @@ public sealed class RedisStreamPublisher : IStreamPublisher
         where T : class
     {
         var payload = serializer.Serialize(data);
+        if (payload is null)
+        {
+            string message = $"In {nameof(PublishAsync)}\nCannot serialize payload: {data}";
+            throw new SerializationException(message);
+        }
+
         return subscriber.PublishAsync(queue, payload);
     }
 }
