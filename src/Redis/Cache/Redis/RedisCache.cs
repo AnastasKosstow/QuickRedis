@@ -119,6 +119,8 @@ internal sealed class RedisCache : ICache, IDisposable
         if (connection != null)
         {
             connection.Close();
+            connection.Dispose();
         }
+        connectionLock.Dispose();
     }
 }
