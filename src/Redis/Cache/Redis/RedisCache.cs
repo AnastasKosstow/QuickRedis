@@ -9,10 +9,16 @@ internal sealed class RedisCache : ICache, IDisposable
 {
     private IDatabase redisCache;
 
-    private volatile IConnectionMultiplexer connection;
-
     private readonly SemaphoreSlim connectionLock = new(initialCount: 1, maxCount: 1);
 
+    /// <summary>
+    /// Use "volatile" instead of "readonly". 
+    /// This is because the connection object is assigned in the constructor and can also be changed later in the ConnectAsync method.
+    /// Using volatile in this case ensures that the most up-to-date value of connection is accessed across multiple threads and its state can be changed by any thread at any time,
+    /// without causing unexpected behavior.
+    /// </summary>
+    private volatile IConnectionMultiplexer connection;
+    
     public RedisCache(IConnectionMultiplexer connection)
     {
         this.connection = connection;

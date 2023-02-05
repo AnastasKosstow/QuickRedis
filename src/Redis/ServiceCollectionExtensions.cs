@@ -32,7 +32,7 @@ public static class ServiceCollectionExtensions
         {
             throw new RedisConfigurationOptionsException(
                 $"Cannot get RedisOptions section from {nameof(IConfiguration)}. " +
-                $"\"RedisOptions\" section must be provided with property \"ConnectionString\" with valid redis database connection string.");
+                $"\"Redis\" section must be provided with property \"ConnectionString\" with valid redis database connection string.");
         }
 
         services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(options.ConnectionString));
