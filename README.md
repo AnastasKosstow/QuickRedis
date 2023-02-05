@@ -3,7 +3,7 @@ Documentation
 
 To use the library in your project, follow these steps:
 >
-Add "Redis" section in your appsetting.json file, and "ConnectionString" with valid redis connection.
+ - Add "Redis" section in your appsetting.json file, and "ConnectionString" with valid redis connection.
 
 ```json
   "Redis": {
@@ -11,7 +11,7 @@ Add "Redis" section in your appsetting.json file, and "ConnectionString" with va
   }
 ```
 
-Add Redis Fluent library in Program.cs with the functionality you want:
+ - Add Redis Fluent library in Program.cs with the functionality you want:
 ```C#
   builder.Services
     .AddRedis(config =>
