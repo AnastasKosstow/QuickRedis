@@ -24,7 +24,7 @@ public static class ServiceCollectionExtensions
             configuration = serviceProvider.GetService<IConfiguration>();
         }
 
-        var section = configuration.GetRequiredSection(sectionName);
+        var section = configuration.GetSection(sectionName);
         var options = new RedisOptions();
         section.Bind(options);
 
