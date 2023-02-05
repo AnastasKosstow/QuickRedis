@@ -36,7 +36,7 @@ To use Redis cache, inject "ICache" interface from "Redis.Cache" namespace
 
 ### Supported operations:
 
-SetAsync, SetAsync<T>
+<i>SetAsync, SetAsync<T></i>
 ```C#
   // Set
   await cache.SetAsync(key, value);
@@ -48,12 +48,12 @@ SetAsync, SetAsync<T>
   });
 ```
 
-GetAsync
+<i>GetAsync</i>
 ```C#
   await cache.GetAsync(key);
 ```
 
-RemoveAsync
+<i>RemoveAsync</i>
 ```C#
   await cache.RemoveAsync(key);
 ```
