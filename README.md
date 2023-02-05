@@ -24,19 +24,40 @@ Add Redis Fluent library in Program.cs with the functionality you want:
 ```
 
 
-* [Cache](#cache)
+# Cache
+==========================
 
-Cache
---------------
-
-Features
+## Features
  - Provides a simple and intuitive way to interact with Redis cache.
- - Supports Redis string operations like Get, Set, and Remove.
+ - Supports Redis operations like Get, Set, and Remove.
  - Supports serialization and deserialization of complex objects using System.Text.Json.
  - Thread-safe access to Redis database using a SemaphoreSlim lock.
  - Provides full control over cache entry options, such as expiration time.
  - Safe and robust handling of connection errors and exceptions.
 
+> To use Redis cache, inject "ICache" interface from "Redis.Cache" namespace
 
+## Supported operations:
 
+SetAsync, SetAsync<T>
+```C#
+  // Set
+  await cache.SetAsync(key, value);
+
+  // Set with expiration
+  await cache.SetAsync(key, value, cacheEntryOptions =>
+  {
+      cacheEntryOptions.Expiration = new TimeSpan(1, 0, 0);
+  });
+```
+
+GetAsync
+```C#
+  await cache.GetAsync(key);
+```
+
+RemoveAsync
+```C#
+  await cache.RemoveAsync(key);
+```
 
