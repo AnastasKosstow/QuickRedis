@@ -4,12 +4,23 @@ Documentation
 > A .NET library for easy integration of Redis in a fluent manner.
 > To use the library in your project, follow these steps:
 
-Add "redis" section in your appsetting.json file, and "ConnectionString" with valid redis connection.
+Add "Redis" section in your appsetting.json file, and "ConnectionString" with valid redis connection.
 
 ```json
   "Redis": {
     "ConnectionString": "localhost:6379"
   }
+```
+
+Add Redis Fluent library in Program.cs with the functionality you want:
+```C#
+  builder.Services
+    .AddRedis(config =>
+    {
+        config
+            .AddRedisCache() // Add redis cache
+            .AddRedisStreaming(); // Add redis Pub/Sub
+    });
 ```
 
 
