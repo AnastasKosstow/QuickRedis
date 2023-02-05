@@ -25,7 +25,7 @@ Add Redis Fluent library in Program.cs with the functionality you want:
 
 
 # Cache
-==========================
+> To use Redis cache, inject "ICache" interface from "Redis.Cache" namespace
 
 ## Features
  - Provides a simple and intuitive way to interact with Redis cache.
@@ -34,8 +34,6 @@ Add Redis Fluent library in Program.cs with the functionality you want:
  - Thread-safe access to Redis database using a SemaphoreSlim lock.
  - Provides full control over cache entry options, such as expiration time.
  - Safe and robust handling of connection errors and exceptions.
-
-> To use Redis cache, inject "ICache" interface from "Redis.Cache" namespace
 
 ## Supported operations:
 
