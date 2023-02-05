@@ -26,7 +26,7 @@ To use the library in your project, follow these steps:
 # Cache
 To use Redis cache, inject "ICache" interface from "Redis.Cache" namespace
 
-## Features
+### Features
  - Provides a simple and intuitive way to interact with Redis cache.
  - Supports Redis operations like Get, Set, and Remove.
  - Supports serialization and deserialization of complex objects using System.Text.Json.
@@ -34,7 +34,7 @@ To use Redis cache, inject "ICache" interface from "Redis.Cache" namespace
  - Provides full control over cache entry options, such as expiration time.
  - Safe and robust handling of connection errors and exceptions.
 
-## Supported operations:
+### Supported operations:
 
 SetAsync, SetAsync<T>
 ```C#
