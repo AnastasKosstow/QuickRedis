@@ -25,7 +25,7 @@ Add Redis Fluent library in Program.cs with the functionality you want:
 
 
 # Cache
-> To use Redis cache, inject "ICache" interface from "Redis.Cache" namespace
+To use Redis cache, inject "ICache" interface from "Redis.Cache" namespace
 
 ## Features
  - Provides a simple and intuitive way to interact with Redis cache.
