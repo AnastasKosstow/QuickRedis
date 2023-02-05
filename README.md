@@ -2,11 +2,9 @@ Documentation
 ==========================
 
 > A .NET library for easy integration of Redis in a fluent manner.
+> To use the library in your project, follow these steps:
 
-Getting Started
-To use the library in your project, follow these steps:
-
-Install the Redis.Cache NuGet package.
+Add "redis" section in your appsetting.json file, and "ConnectionString" with valid redis connection.
 
 ```json
   "Redis": {
