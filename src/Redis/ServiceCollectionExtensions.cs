@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
+using Redis.Common.Exceptions;
 
 namespace Redis.Configuration;
 
@@ -26,6 +27,13 @@ public static class ServiceCollectionExtensions
         var section = configuration.GetRequiredSection(sectionName);
         var options = new RedisOptions();
         section.Bind(options);
+
+        if (string.IsNullOrEmpty(options.ConnectionString))
+        {
+            throw new RedisConfigurationOptionsException(
+                $"Cannot get RedisOptions section from {nameof(IConfiguration)}. " +
+                $"\"RedisOptions\" section must be provided with property \"ConnectionString\" with valid redis database connection string.");
+        }
 
         services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(options.ConnectionString));
 

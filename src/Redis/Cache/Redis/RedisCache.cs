@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using StackExchange.Redis;
 using Redis.Cache.Options;
+using Redis.Common.Exceptions;
 
 namespace Redis.Cache;
 
@@ -36,14 +37,14 @@ internal sealed class RedisCache : ICache, IDisposable
 
     public async Task SetAsync(string key, string value, Action<CacheEntryOptions> options, CancellationToken cancellationToken = default)
     {
-        if (key == null)
+        if (string.IsNullOrWhiteSpace(key))
         {
-            throw new ArgumentNullException(nameof(key));
+            throw new CacheKeyIsNullOrWhiteSpaceException(nameof(key));
         }
 
-        if (value == null)
+        if (string.IsNullOrWhiteSpace(value))
         {
-            throw new ArgumentNullException(nameof(value));
+            throw new CacheValueIsNullOrWhiteSpaceException(nameof(value));
         }
 
         cancellationToken.ThrowIfCancellationRequested();
@@ -64,9 +65,9 @@ internal sealed class RedisCache : ICache, IDisposable
 
     public async Task<string> GetAsync(string key, CancellationToken cancellationToken = default)
     {
-        if (key == null)
+        if (string.IsNullOrWhiteSpace(key))
         {
-            throw new ArgumentNullException(nameof(key));
+            throw new CacheKeyIsNullOrWhiteSpaceException(nameof(key));
         }
 
         cancellationToken.ThrowIfCancellationRequested();
@@ -75,16 +76,16 @@ internal sealed class RedisCache : ICache, IDisposable
         var result = await redisCache.StringGetAsync(key);
         if (!result.HasValue)
         {
-            throw new ArgumentNullException(nameof(result));
+            throw new MissingCacheValueException($"Redis cache does not contains value for key: {key}");
         }
         return result;
     }
 
     public async Task RemoveAsync(string key, CancellationToken cancellationToken = default)
     {
-        if (key == null)
+        if (string.IsNullOrWhiteSpace(key))
         {
-            throw new ArgumentNullException(nameof(key));
+            throw new CacheKeyIsNullOrWhiteSpaceException(nameof(key));
         }
 
         await ConnectAsync(cancellationToken);
@@ -103,10 +104,7 @@ internal sealed class RedisCache : ICache, IDisposable
         await connectionLock.WaitAsync(cancellationToken);
         try
         {
-            if (redisCache == null)
-            {
-                redisCache = connection.GetDatabase();
-            }
+            redisCache ??= connection.GetDatabase();
         }
         finally
         {

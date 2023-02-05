@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Redis.Stream;
 using Redis.Cache;
 using Redis.Common.Serialization;
-using Redis.Stream;
 
 namespace Redis.Configuration;
 
