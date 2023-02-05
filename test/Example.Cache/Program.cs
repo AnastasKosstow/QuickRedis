@@ -16,11 +16,16 @@ app.MapGet("/cache", async (ICache cache) =>
     var key = "key";
     var value = "value";
 
+    // Set
     await cache.SetAsync(key, value);
+    
+    // Set with expiration
     await cache.SetAsync(key, value, cacheEntryOptions =>
     {
         cacheEntryOptions.Expiration = new TimeSpan(1, 0, 0);
     });
+
+    // Get
     var result = await cache.GetAsync(key);
 });
 
