@@ -5,10 +5,20 @@ using Redis.Common.Exceptions;
 
 namespace Redis.Configuration;
 
+/// <summary>
+/// Contains extension methods for configuring Redis-related services.
+/// </summary>
 public static class ServiceCollectionExtensions
 {
     private static readonly string sectionName = "redis";
 
+    /// <summary>
+    /// Adds Redis services to the specified <see cref="IServiceCollection"/>.
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
+    /// <param name="configAction">An action to configure Redis settings.</param>
+    /// <returns>The modified <see cref="IServiceCollection"/> instance.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="configAction"/> is null.</exception>
     public static IServiceCollection AddRedis(
         this IServiceCollection services,
         Action<IRedisConfiguration> configAction)
