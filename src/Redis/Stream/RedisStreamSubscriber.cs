@@ -2,10 +2,11 @@ using StackExchange.Redis;
 using Redis.Common.Extensions;
 using Redis.Common.Serialization;
 using System.Runtime.Serialization;
+using Redis.Stream.Abstractions;
 
 namespace Redis.Stream;
 
-public sealed class RedisStreamSubscriber : IStreamSubscriber
+public sealed class RedisStreamSubscriber : IRedisStreamSubscriber
 {
     private readonly ISubscriber subscriber;
     private readonly ISerializer serializer;

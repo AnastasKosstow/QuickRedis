@@ -12,7 +12,7 @@ public class AddRedisCache_Should
     public async Task SetAsyncWithValidKeyAndValue()
     {
         var serviceProvider = services.BuildServiceProvider();
-        var redisCache = serviceProvider.GetService<ICache>();
+        var redisCache = serviceProvider.GetService<IRedisCache>();
 
         string key = "key";
         string value = "value";
@@ -31,7 +31,7 @@ public class AddRedisCache_Should
     public async Task ThrowsExceptionIfKeyIsNullOrEmpty_SetAsync()
     {
         var serviceProvider = services.BuildServiceProvider();
-        var redisCache = serviceProvider.GetService<ICache>();
+        var redisCache = serviceProvider.GetService<IRedisCache>();
 
         string key = "";
         string value = "value";
@@ -50,7 +50,7 @@ public class AddRedisCache_Should
     public async Task ThrowsExceptionIfValueIsNullOrEmpty_SetAsync()
     {
         var serviceProvider = services.BuildServiceProvider();
-        var redisCache = serviceProvider.GetService<ICache>();
+        var redisCache = serviceProvider.GetService<IRedisCache>();
 
         string key = "key";
         string value = "";
@@ -69,7 +69,7 @@ public class AddRedisCache_Should
     public async Task GetAsyncWithValidKey()
     {
         var serviceProvider = services.BuildServiceProvider();
-        var redisCache = serviceProvider.GetService<ICache>();
+        var redisCache = serviceProvider.GetService<IRedisCache>();
 
         string key = "key";
         string value = "value";
@@ -89,7 +89,7 @@ public class AddRedisCache_Should
     public async Task ThrowsExceptionIfKeyIsNullOrEmpty_GetAsync()
     {
         var serviceProvider = services.BuildServiceProvider();
-        var redisCache = serviceProvider.GetService<ICache>();
+        var redisCache = serviceProvider.GetService<IRedisCache>();
 
         string key = "";
 
@@ -107,7 +107,7 @@ public class AddRedisCache_Should
     public async Task RemoveAsyncWithValidKey()
     {
         var serviceProvider = services.BuildServiceProvider();
-        var redisCache = serviceProvider.GetService<ICache>();
+        var redisCache = serviceProvider.GetService<IRedisCache>();
 
         string key = "key";
         string value = "value";
@@ -127,7 +127,7 @@ public class AddRedisCache_Should
     public async Task ThrowsExceptionIfKeyIsNullOrEmpty_RemoveAsync()
     {
         var serviceProvider = services.BuildServiceProvider();
-        var redisCache = serviceProvider.GetService<ICache>();
+        var redisCache = serviceProvider.GetService<IRedisCache>();
 
         string key = "";
 

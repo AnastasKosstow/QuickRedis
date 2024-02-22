@@ -11,7 +11,7 @@ builder.Services
 
 var app = builder.Build();
 
-app.MapGet("/cache", async (ICache cache) =>
+app.MapGet("/cache", async (IRedisCache cache) =>
 {
     var key = "key";
     var value = "value";

@@ -1,5 +1,5 @@
 using Redis.Configuration;
-using Redis.Stream;
+using Redis.Stream.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,9 +16,9 @@ app.Run();
 
 internal sealed class AsyncSubscriberBackgroundService : BackgroundService
 {
-    private readonly IStreamSubscriber streamSubscriber;
+    private readonly IRedisStreamSubscriber streamSubscriber;
 
-    public AsyncSubscriberBackgroundService(IStreamSubscriber streamSubscriber)
+    public AsyncSubscriberBackgroundService(IRedisStreamSubscriber streamSubscriber)
     {
         this.streamSubscriber = streamSubscriber;
     }
@@ -34,9 +34,9 @@ internal sealed class AsyncSubscriberBackgroundService : BackgroundService
 
 internal sealed class SyncSubscriberBackgroundService : BackgroundService
 {
-    private readonly IStreamSubscriber streamSubscriber;
+    private readonly IRedisStreamSubscriber streamSubscriber;
 
-    public SyncSubscriberBackgroundService(IStreamSubscriber streamSubscriber)
+    public SyncSubscriberBackgroundService(IRedisStreamSubscriber streamSubscriber)
     {
         this.streamSubscriber = streamSubscriber;
     }

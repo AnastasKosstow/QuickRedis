@@ -1,5 +1,5 @@
 using Redis.Configuration;
-using Redis.Stream;
+using Redis.Stream.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +11,7 @@ builder.Services
 
 var app = builder.Build();
 
-app.MapGet("/publish", async (IStreamPublisher streamPublisher) =>
+app.MapGet("/publish", async (IRedisStreamPublisher streamPublisher) =>
 {
     var request = new Request() { Content = "Value" };
 
@@ -20,6 +20,16 @@ app.MapGet("/publish", async (IStreamPublisher streamPublisher) =>
     // these names are for easy recognition of the channels
     await streamPublisher.PublishAsync("async", request);
     await streamPublisher.PublishAsync("sync", request);
+});
+
+app.MapPost("/publish", async (IRedisStreamPublisher streamPublisher) =>
+{
+    var request = new Request() 
+    { 
+        Content = "Hello, Redis Stream!"
+    };
+
+    await streamPublisher.PublishAsync("request_queue", request);
 });
 
 app.Run();

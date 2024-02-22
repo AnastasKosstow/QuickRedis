@@ -2,6 +2,7 @@
 using Redis.Stream;
 using Redis.Cache;
 using Redis.Common.Serialization;
+using Redis.Stream.Abstractions;
 
 namespace Redis.Configuration;
 
@@ -16,7 +17,7 @@ public class RedisConfiguration : IRedisConfiguration
 
     public IRedisConfiguration AddRedisCache()
     {
-        services.AddSingleton<ICache, RedisCache>();
+        services.AddSingleton<IRedisCache, RedisCache>();
         return this;
     }
 
@@ -24,8 +25,8 @@ public class RedisConfiguration : IRedisConfiguration
     {
         services
             .AddSingleton<ISerializer, SystemTextJsonSerializer>()
-            .AddSingleton<IStreamPublisher, RedisStreamPublisher>()
-            .AddSingleton<IStreamSubscriber, RedisStreamSubscriber>();
+            .AddSingleton<IRedisStreamPublisher, RedisStreamPublisher>()
+            .AddSingleton<IRedisStreamSubscriber, RedisStreamSubscriber>();
         return this;
     }
 }
