@@ -24,53 +24,82 @@ internal sealed class RedisCache : IRedisCache, IDisposable
         this.connection = connection;
     }
 
+    #region PUBLIC
     public async Task SetAsync(string key, string value, CancellationToken cancellationToken = default)
     {
-        await SetAsync(key, value, null, cancellationToken);
-    }
-
-    public async Task SetAsync<T>(string key, T value, CancellationToken cancellationToken = default)
-    {
-        string serializedValue;
-        try
-        {
-            serializedValue = JsonSerializer.Serialize(value);
-        }
-        catch (JsonException ex)
-        {
-            throw new CacheSerializationException("Failed to serialize the value.", ex);
-        }
-
-        await SetAsync(key, serializedValue, null, cancellationToken);
-    }
-
-    public async Task SetAsync<T>(string key, T value, Action<CacheEntryOptions> options, CancellationToken cancellationToken = default)
-    {
-        string serializedValue;
-        try
-        {
-            serializedValue = JsonSerializer.Serialize(value);
-        }
-        catch (JsonException ex)
-        {
-            throw new CacheSerializationException("Failed to serialize the value.", ex);
-        }
-
-        await SetAsync(key, serializedValue, options, cancellationToken);
+        await SetInRedisAsync(key, value, null, cancellationToken);
     }
 
     public async Task SetAsync(string key, string value, Action<CacheEntryOptions> options, CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrWhiteSpace(key))
+        await SetInRedisAsync(key, value, options, cancellationToken);
+    }
+
+    public async Task SetAsync<T>(string key, T value, CancellationToken cancellationToken = default)
+    {
+        string serializedValue = SerializeValue(value);
+        await SetInRedisAsync(key, serializedValue, null, cancellationToken);
+    }
+
+    public async Task SetAsync<T>(string key, T value, Action<CacheEntryOptions> options, CancellationToken cancellationToken = default)
+    {
+        string serializedValue = SerializeValue(value);
+        await SetInRedisAsync(key, serializedValue, options, cancellationToken);
+    }
+
+    public async Task<T> GetAsync<T>(string key, CancellationToken cancellationToken = default)
+    {
+        ValidateKey(key);
+        var redisValue = await GetFromRedisAsync(key, cancellationToken);
+        T result = DeserializeValue<T>(redisValue);
+        return result;
+    }
+
+    public async Task<string> GetAsync(string key, CancellationToken cancellationToken = default)
+    {
+        ValidateKey(key);
+        var result = await GetFromRedisAsync(key, cancellationToken);
+        return result;
+    }
+
+    public async Task<(bool Success, T Result)> TryGetAsync<T>(string key, CancellationToken cancellationToken = default)
+    {
+        ValidateKey(key);
+        var result = await TryGetFromRedisAsync(key, cancellationToken);
+        if (!result.HasValue)
         {
-            throw new CacheKeyIsNullOrWhiteSpaceException(nameof(key));
+            return (false, default(T));
         }
 
-        if (string.IsNullOrWhiteSpace(value))
+        T deserializeResult = DeserializeValue<T>(result);
+        return (true, deserializeResult);
+    }
+
+    public async Task<(bool Success, string Result)> TryGetAsync(string key, CancellationToken cancellationToken = default)
+    {
+        ValidateKey(key);
+        var result = await TryGetFromRedisAsync(key, cancellationToken);
+        if (!result.HasValue)
         {
-            throw new CacheValueIsNullOrWhiteSpaceException(nameof(value));
+            return (false, null);
         }
 
+        return (true, result);
+    }
+
+    public async Task RemoveAsync(string key, CancellationToken cancellationToken = default)
+    {
+        ValidateKey(key);
+        await ConnectAsync(cancellationToken);
+        await redisCache.KeyDeleteAsync(key);
+    }
+    #endregion
+
+    #region PRIVATE
+    private async Task SetInRedisAsync(string key, string value, Action<CacheEntryOptions> options, CancellationToken cancellationToken = default)
+    {
+        ValidateKey(key);
+        ValidateValue(value);
 
         cancellationToken.ThrowIfCancellationRequested();
         await ConnectAsync(cancellationToken);
@@ -88,27 +117,8 @@ internal sealed class RedisCache : IRedisCache, IDisposable
         }
     }
 
-    public async Task<T> GetAsync<T>(string key, CancellationToken cancellationToken = default)
+    private async Task<string> GetFromRedisAsync(string key, CancellationToken cancellationToken = default)
     {
-        var redisValue = await GetAsync(key, cancellationToken);
-        try
-        {
-            T result = JsonSerializer.Deserialize<T>(redisValue);
-            return result;
-        }
-        catch (JsonException ex)
-        {
-            throw new CacheSerializationException("Failed to deserialize the result.", ex);
-        }
-    }
-
-    public async Task<string> GetAsync(string key, CancellationToken cancellationToken = default)
-    {
-        if (string.IsNullOrWhiteSpace(key))
-        {
-            throw new CacheKeyIsNullOrWhiteSpaceException(nameof(key));
-        }
-
         cancellationToken.ThrowIfCancellationRequested();
         await ConnectAsync(cancellationToken);
 
@@ -121,61 +131,49 @@ internal sealed class RedisCache : IRedisCache, IDisposable
         return result;
     }
 
-    public async Task<(bool Success, string Result)> TryGetAsync(string key, CancellationToken cancellationToken = default)
+    private async Task<RedisValue> TryGetFromRedisAsync(string key, CancellationToken cancellationToken = default)
     {
-        var result = await TryGetAsync(key);
-        if (result.Success)
-        {
-            var value = result.Result;
-        }
-
-        if (string.IsNullOrWhiteSpace(key))
-        {
-            throw new CacheKeyIsNullOrWhiteSpaceException(nameof(key));
-        }
-
         cancellationToken.ThrowIfCancellationRequested();
         await ConnectAsync(cancellationToken);
 
         RedisValue redisValue = await redisCache.StringGetAsync(key);
-        if (!redisValue.HasValue)
-        {
-            return (false, null);
-        }
-
-        return (true, redisValue);
+        return redisValue;
     }
 
-    public async Task<(bool Success, T Result)> TryGetAsync<T>(string key, CancellationToken cancellationToken = default)
-    {
-        var (Success, Result) = await TryGetAsync(key, cancellationToken);
-        if (Success)
-        {
-            try
-            {
-                T deserializeResult = JsonSerializer.Deserialize<T>(Result);
-                return (true, deserializeResult);
-            }
-            catch (JsonException ex)
-            {
-                throw new CacheSerializationException("Failed to deserialize the result.", ex);
-            }
-        }
-        else
-        {
-            return (false, default(T));
-        }
-    }
-
-    public async Task RemoveAsync(string key, CancellationToken cancellationToken = default)
+    private static void ValidateKey(string key)
     {
         if (string.IsNullOrWhiteSpace(key))
-        {
             throw new CacheKeyIsNullOrWhiteSpaceException(nameof(key));
-        }
+    }
 
-        await ConnectAsync(cancellationToken);
-        await redisCache.KeyDeleteAsync(key);
+    private static void ValidateValue(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            throw new CacheValueIsNullOrWhiteSpaceException(nameof(value));
+    }
+
+    private static string SerializeValue(object value)
+    {
+        try
+        {
+            return JsonSerializer.Serialize(value);
+        }
+        catch (JsonException ex)
+        {
+            throw new CacheSerializationException("Failed to serialize the value.", ex);
+        }
+    }
+
+    private static T DeserializeValue<T>(RedisValue redisValue)
+    {
+        try
+        {
+            return JsonSerializer.Deserialize<T>(redisValue);
+        }
+        catch (JsonException ex)
+        {
+            throw new CacheSerializationException("Failed to deserialize the result.", ex);
+        }
     }
 
     private async Task ConnectAsync(CancellationToken cancellationToken = default)
@@ -197,6 +195,7 @@ internal sealed class RedisCache : IRedisCache, IDisposable
             connectionLock.Release();
         }
     }
+#endregion
 
     public void Dispose()
     {
