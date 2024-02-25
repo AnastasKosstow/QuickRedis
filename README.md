@@ -14,18 +14,18 @@ To use the library in your project, follow these steps:
  - Add QuickRedis Fluent library in Program.cs with the functionality you want:
    - Cache:
       ```C#
-      builder.Services.AddRedis(config => config.AddRedisCache());
+      builder.Services.AddQuickRedis(config => config.AddRedisCache());
       ```
  
     - Streaming
       ```C#
-      builder.Services.AddRedis(config => config.AddRedisStreaming());
+      builder.Services.AddQuickRedis(config => config.AddRedisStreaming());
       ```
 
     - Or both
       ```C#
       builder.Services
-         .AddRedis(config =>
+         .AddQuickRedis(config =>
          {
              config
                  .AddRedisCache() // Add redis cache
