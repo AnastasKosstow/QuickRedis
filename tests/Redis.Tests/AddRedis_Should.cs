@@ -1,10 +1,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Redis.Common.Exceptions;
-using Redis.Configuration;
+using QuickRedis.Common.Exceptions;
+using QuickRedis.Configuration;
 using StackExchange.Redis;
 
-namespace Redis.Tests;
+namespace QuickRedis.Tests;
 
 public class AddRedis_Should
 {
@@ -14,7 +14,7 @@ public class AddRedis_Should
         var services = new ServiceCollection();
         var configuration = new ConfigurationBuilder()
             .AddInMemoryCollection(
-                new[] { new KeyValuePair<string, string>("redis:ConnectionString", "localhost:6379") })
+                new[] { new KeyValuePair<string, string>("QuickRedis:ConnectionString", "localhost:6379") })
             .Build();
 
         services

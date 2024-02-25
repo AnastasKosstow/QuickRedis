@@ -1,4 +1,4 @@
-﻿namespace Redis.Cache.Options;
+﻿namespace QuickRedis.Cache.Options;
 
 public class CacheEntryOptions
 {

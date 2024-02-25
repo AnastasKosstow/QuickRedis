@@ -1,4 +1,4 @@
-﻿namespace Redis.Common.Exceptions;
+﻿namespace QuickRedis.Common.Exceptions;
 
 public class CacheSerializationException : Exception
 {

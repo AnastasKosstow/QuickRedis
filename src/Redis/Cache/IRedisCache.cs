@@ -1,6 +1,6 @@
-﻿using Redis.Cache.Options;
+﻿using QuickRedis.Cache.Options;
 
-namespace Redis.Cache;
+namespace QuickRedis.Cache;
 
 public interface IRedisCache
 {

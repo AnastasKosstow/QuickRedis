@@ -1,4 +1,4 @@
-﻿namespace Redis.Common.Serialization;
+﻿namespace QuickRedis.Common.Serialization;
 
 public interface ISerializer
 {

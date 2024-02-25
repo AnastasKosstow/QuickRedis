@@ -1,5 +1,5 @@
-using Redis.Cache;
-using Redis.Configuration;
+using QuickRedis.Cache;
+using QuickRedis.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

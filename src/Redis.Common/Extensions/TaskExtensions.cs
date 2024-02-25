@@ -1,6 +1,6 @@
-﻿using Redis.Common.Helpers;
+﻿using QuickRedis.Common.Helpers;
 
-namespace Redis.Common.Extensions;
+namespace QuickRedis.Common.Extensions;
 
 public static class TaskExtensions
 {

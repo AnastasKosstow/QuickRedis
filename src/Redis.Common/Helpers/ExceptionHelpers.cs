@@ -1,6 +1,6 @@
 ﻿using System.Runtime.ExceptionServices;
 
-namespace Redis.Common.Helpers;
+namespace QuickRedis.Common.Helpers;
 
 public static class ExceptionHelpers
 {

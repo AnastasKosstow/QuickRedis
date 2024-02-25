@@ -1,5 +1,5 @@
-using Redis.Configuration;
-using Redis.Stream.Abstractions;
+using QuickRedis.Configuration;
+using QuickRedis.Stream.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,19 +1,19 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
-using Redis.Common.Exceptions;
+using QuickRedis.Common.Exceptions;
 
-namespace Redis.Configuration;
+namespace QuickRedis.Configuration;
 
 /// <summary>
 /// Contains extension methods for configuring Redis-related services.
 /// </summary>
 public static class ServiceCollectionExtensions
 {
-    private static readonly string sectionName = "redis";
+    private static readonly string sectionName = "QuickRedis";
 
     /// <summary>
-    /// Adds Redis services to the specified <see cref="IServiceCollection"/>.
+    /// Adds QuickRedis services to the specified <see cref="IServiceCollection"/>.
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
     /// <param name="configAction">An action to configure Redis settings.</param>
@@ -42,7 +42,7 @@ public static class ServiceCollectionExtensions
         {
             throw new RedisConfigurationOptionsException(
                 $"Cannot get RedisOptions section from {nameof(IConfiguration)}. " +
-                $"\"Redis\" section must be provided with property \"ConnectionString\" with valid redis database connection string.");
+                $"\"QuickRedis\" section must be provided with property \"ConnectionString\" with a valid redis database connection string.");
         }
 
         services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(options.ConnectionString));

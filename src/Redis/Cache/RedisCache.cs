@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
 using StackExchange.Redis;
-using Redis.Cache.Options;
-using Redis.Common.Exceptions;
+using QuickRedis.Cache.Options;
+using QuickRedis.Common.Exceptions;
 
-namespace Redis.Cache;
+namespace QuickRedis.Cache;
 
 internal sealed class RedisCache : IRedisCache, IDisposable
 {

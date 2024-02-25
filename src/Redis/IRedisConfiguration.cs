@@ -1,4 +1,4 @@
-﻿namespace Redis.Configuration;
+﻿namespace QuickRedis.Configuration;
 
 public interface IRedisConfiguration
 {

@@ -1,4 +1,4 @@
-namespace Redis.Stream.Abstractions;
+namespace QuickRedis.Stream.Abstractions;
 
 /// <summary>
 /// Redis stream publisher for publishing data to a specified queue.

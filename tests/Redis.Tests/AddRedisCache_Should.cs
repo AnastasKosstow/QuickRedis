@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Redis.Cache;
-using Redis.Common.Exceptions;
-using Redis.Configuration;
+using QuickRedis.Cache;
+using QuickRedis.Common.Exceptions;
+using QuickRedis.Configuration;
 
-namespace Redis.Tests;
+namespace QuickRedis.Tests;
 
 public class AddRedisCache_Should
 {

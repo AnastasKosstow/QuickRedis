@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace Redis.Common.Serialization;
+namespace QuickRedis.Common.Serialization;
 
 public sealed class SystemTextJsonSerializer : ISerializer
 {

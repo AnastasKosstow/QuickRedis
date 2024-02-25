@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Redis.Common\Redis.Common.csproj" />
+    <ProjectReference Include="..\Redis.Common\QuickRedis.Common.csproj" />
   </ItemGroup>
 
 	<ItemGroup>

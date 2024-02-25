@@ -1,4 +1,4 @@
-﻿namespace Redis;
+﻿namespace QuickRedis;
 
 public class RedisOptions
 {
