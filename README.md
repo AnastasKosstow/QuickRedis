@@ -4,28 +4,28 @@ Quick Start
 ## Configuration
 To use the library in your project, follow these steps:
 >
- - Add "Redis" section in your appsetting.json file, and "ConnectionString" with valid redis connection.
+ - Add "QuickRedis" section in your appsetting.json file, and "ConnectionString" with valid redis connection.
    ```json
-     "Redis": {
+     "QuickRedis": {
        "ConnectionString": "localhost:6379"
      }
    ```
 
- - Add Redis Fluent library in Program.cs with the functionality you want:
+ - Add QuickRedis Fluent library in Program.cs with the functionality you want:
    - Cache:
       ```C#
-      builder.Services.AddRedis(config => config.AddRedisCache());
+      builder.Services.AddQuickRedis(config => config.AddRedisCache());
       ```
  
     - Streaming
       ```C#
-      builder.Services.AddRedis(config => config.AddRedisStreaming());
+      builder.Services.AddQuickRedis(config => config.AddRedisStreaming());
       ```
 
     - Or both
       ```C#
       builder.Services
-         .AddRedis(config =>
+         .AddQuickRedis(config =>
          {
              config
                  .AddRedisCache() // Add redis cache
@@ -34,7 +34,7 @@ To use the library in your project, follow these steps:
       ```
 
 # Cache
-To use Redis cache, inject "ICache" interface from "Redis.Cache" namespace
+To use Redis cache, inject "ICache" interface from "QuickRedis.Cache" namespace
 
 ### Features
  - Provides a simple and intuitive way to interact with Redis cache.
@@ -114,7 +114,7 @@ Assuming we injected an ICache interface
 
 # Stream
 
-The Redis library supports Publish/Subscribe (Pub/Sub) messaging patterns through Redis streams, enabling applications to communicate asynchronously via messages. <br>
+QuickRedis library supports Publish/Subscribe (Pub/Sub) messaging patterns through Redis streams, enabling applications to communicate asynchronously via messages. <br>
 This section describes how to publish messages to a stream and subscribe to receive messages from a stream.
 
  - **Publish**
