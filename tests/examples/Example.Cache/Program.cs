@@ -4,7 +4,7 @@ using QuickRedis.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddRedis(config =>
+    .AddQuickRedis(config =>
     {
         config.AddRedisCache();
     });

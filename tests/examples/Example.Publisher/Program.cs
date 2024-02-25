@@ -4,7 +4,7 @@ using QuickRedis.Stream.Abstractions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddRedis(config =>
+    .AddQuickRedis(config =>
     {
         config.AddRedisStreaming();
     });

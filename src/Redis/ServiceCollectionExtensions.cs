@@ -19,7 +19,7 @@ public static class ServiceCollectionExtensions
     /// <param name="configAction">An action to configure Redis settings.</param>
     /// <returns>The modified <see cref="IServiceCollection"/> instance.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="configAction"/> is null.</exception>
-    public static IServiceCollection AddRedis(
+    public static IServiceCollection AddQuickRedis(
         this IServiceCollection services,
         Action<IRedisConfiguration> configAction)
     {
