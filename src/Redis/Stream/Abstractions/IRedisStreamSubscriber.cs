@@ -1,4 +1,4 @@
-namespace QuickRedis.Stream.Abstractions;
+namespace RedLens.Stream.Abstractions;
 
 /// <summary>
 /// Redis stream subscriber for subscribing to messages on a specified channel.

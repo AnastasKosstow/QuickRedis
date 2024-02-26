@@ -1,25 +1,25 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
-using QuickRedis.Common.Exceptions;
+using RedLens.Common.Exceptions;
 
-namespace QuickRedis.Configuration;
+namespace RedLens.Configuration;
 
 /// <summary>
 /// Contains extension methods for configuring Redis-related services.
 /// </summary>
 public static class ServiceCollectionExtensions
 {
-    private static readonly string sectionName = "QuickRedis";
+    private static readonly string sectionName = "RedLens";
 
     /// <summary>
-    /// Adds QuickRedis services to the specified <see cref="IServiceCollection"/>.
+    /// Adds RedLens services to the specified <see cref="IServiceCollection"/>.
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
     /// <param name="configAction">An action to configure Redis settings.</param>
     /// <returns>The modified <see cref="IServiceCollection"/> instance.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="configAction"/> is null.</exception>
-    public static IServiceCollection AddQuickRedis(
+    public static IServiceCollection AddRedLens(
         this IServiceCollection services,
         Action<IRedisConfiguration> configAction)
     {
@@ -42,7 +42,7 @@ public static class ServiceCollectionExtensions
         {
             throw new RedisConfigurationOptionsException(
                 $"Cannot get RedisOptions section from {nameof(IConfiguration)}. " +
-                $"\"QuickRedis\" section must be provided with property \"ConnectionString\" with a valid redis database connection string.");
+                $"\"RedLens\" section must be provided with property \"ConnectionString\" with a valid redis database connection string.");
         }
 
         services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(options.ConnectionString));

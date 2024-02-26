@@ -1,0 +1,12 @@
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\bin\Release\net8.0\RedLens.Common.deps.json
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\bin\Release\net8.0\RedLens.Common.dll
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\bin\Release\net8.0\RedLens.Common.pdb
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\RedLens.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\RedLens.Common.AssemblyInfoInputs.cache
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\RedLens.Common.AssemblyInfo.cs
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\RedLens.Common.csproj.CoreCompileInputs.cache
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\RedLens.Common.sourcelink.json
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\RedLens.Common.dll
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\refint\RedLens.Common.dll
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\RedLens.Common.pdb
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\ref\RedLens.Common.dll

@@ -1,4 +1,4 @@
-﻿namespace QuickRedis.Common.Serialization;
+﻿namespace RedLens.Common.Serialization;
 
 public interface ISerializer
 {

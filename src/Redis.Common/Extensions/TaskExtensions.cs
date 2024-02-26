@@ -1,6 +1,6 @@
-﻿using QuickRedis.Common.Helpers;
+﻿using RedLens.Common.Helpers;
 
-namespace QuickRedis.Common.Extensions;
+namespace RedLens.Common.Extensions;
 
 public static class TaskExtensions
 {

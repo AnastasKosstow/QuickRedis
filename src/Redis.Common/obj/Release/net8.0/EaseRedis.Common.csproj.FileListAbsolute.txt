@@ -1,0 +1,12 @@
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\bin\Release\net8.0\EaseRedis.Common.deps.json
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\bin\Release\net8.0\EaseRedis.Common.dll
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\bin\Release\net8.0\EaseRedis.Common.pdb
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\EaseRedis.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\EaseRedis.Common.AssemblyInfoInputs.cache
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\EaseRedis.Common.AssemblyInfo.cs
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\EaseRedis.Common.csproj.CoreCompileInputs.cache
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\EaseRedis.Common.sourcelink.json
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\EaseRedis.Common.dll
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\refint\EaseRedis.Common.dll
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\EaseRedis.Common.pdb
+C:\Users\kosstow\Desktop\Projects\QuickRedis\src\Redis.Common\obj\Release\net8.0\ref\EaseRedis.Common.dll

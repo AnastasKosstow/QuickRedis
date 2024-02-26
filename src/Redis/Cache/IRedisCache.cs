@@ -1,6 +1,6 @@
-﻿using QuickRedis.Cache.Options;
+﻿using RedLens.Cache.Options;
 
-namespace QuickRedis.Cache;
+namespace RedLens.Cache;
 
 public interface IRedisCache
 {

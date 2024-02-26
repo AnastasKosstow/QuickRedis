@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
 using StackExchange.Redis;
-using QuickRedis.Cache.Options;
-using QuickRedis.Common.Exceptions;
+using RedLens.Cache.Options;
+using RedLens.Common.Exceptions;
 
-namespace QuickRedis.Cache;
+namespace RedLens.Cache;
 
 internal sealed class RedisCache : IRedisCache, IDisposable
 {

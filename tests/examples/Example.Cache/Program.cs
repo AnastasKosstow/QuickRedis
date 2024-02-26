@@ -1,10 +1,10 @@
-using QuickRedis.Cache;
-using QuickRedis.Configuration;
+using RedLens.Cache;
+using RedLens.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddQuickRedis(config =>
+    .AddRedLens(config =>
     {
         config.AddRedisCache();
     });

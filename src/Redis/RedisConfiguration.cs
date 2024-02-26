@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using QuickRedis.Stream;
-using QuickRedis.Cache;
-using QuickRedis.Common.Serialization;
-using QuickRedis.Stream.Abstractions;
+using RedLens.Stream;
+using RedLens.Cache;
+using RedLens.Common.Serialization;
+using RedLens.Stream.Abstractions;
 
-namespace QuickRedis.Configuration;
+namespace RedLens.Configuration;
 
 public class RedisConfiguration : IRedisConfiguration
 {

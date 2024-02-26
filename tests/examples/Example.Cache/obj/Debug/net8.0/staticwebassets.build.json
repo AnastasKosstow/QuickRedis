@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "MIWqo8HfkbGW8sH+1ZKbqdtHCrwDd5Nz/TwJwM8JuAM=",
+  "Source": "Example.Cache",
+  "BasePath": "_content/Example.Cache",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

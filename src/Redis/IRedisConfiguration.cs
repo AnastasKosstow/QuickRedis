@@ -1,4 +1,4 @@
-﻿namespace QuickRedis.Configuration;
+﻿namespace RedLens.Configuration;
 
 public interface IRedisConfiguration
 {

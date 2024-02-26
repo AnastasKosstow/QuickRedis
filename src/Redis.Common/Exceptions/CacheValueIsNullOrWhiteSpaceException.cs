@@ -1,4 +1,4 @@
-﻿namespace QuickRedis.Common.Exceptions;
+﻿namespace RedLens.Common.Exceptions;
 
 public class CacheValueIsNullOrWhiteSpaceException : Exception
 {

@@ -1,9 +1,9 @@
 ﻿using StackExchange.Redis;
 using System.Runtime.Serialization;
-using QuickRedis.Common.Serialization;
-using QuickRedis.Stream.Abstractions;
+using RedLens.Common.Serialization;
+using RedLens.Stream.Abstractions;
 
-namespace QuickRedis.Stream;
+namespace RedLens.Stream;
 
 public sealed class RedisStreamPublisher : IRedisStreamPublisher
 {

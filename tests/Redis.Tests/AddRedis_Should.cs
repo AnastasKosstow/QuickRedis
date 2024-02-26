@@ -1,10 +1,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using QuickRedis.Common.Exceptions;
-using QuickRedis.Configuration;
+using RedLens.Common.Exceptions;
+using RedLens.Configuration;
 using StackExchange.Redis;
 
-namespace QuickRedis.Tests;
+namespace RedLens.Tests;
 
 public class AddRedis_Should
 {
@@ -14,12 +14,12 @@ public class AddRedis_Should
         var services = new ServiceCollection();
         var configuration = new ConfigurationBuilder()
             .AddInMemoryCollection(
-                new[] { new KeyValuePair<string, string>("QuickRedis:ConnectionString", "localhost:6379") })
+                new[] { new KeyValuePair<string, string>("RedLens:ConnectionString", "localhost:6379") })
             .Build();
 
         services
             .AddSingleton<IConfiguration>(configuration)
-            .AddRedis(config =>
+            .AddRedLens(config =>
             {
             });
 
@@ -42,7 +42,7 @@ public class AddRedis_Should
 
         try
         {
-            services.AddRedis(config =>
+            services.AddRedLens(config =>
             {
             });
         }
@@ -64,7 +64,7 @@ public class AddRedis_Should
 
         try
         {
-            services.AddRedis(config =>
+            services.AddRedLens(config =>
             {
             });
         }
@@ -86,7 +86,7 @@ public class AddRedis_Should
 
         try
         {
-            services.AddRedis(null);
+            services.AddRedLens(null);
         }
         catch (Exception exception)
         {

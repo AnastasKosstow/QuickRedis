@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using QuickRedis.Cache;
-using QuickRedis.Common.Exceptions;
-using QuickRedis.Configuration;
+using RedLens.Cache;
+using RedLens.Common.Exceptions;
+using RedLens.Configuration;
 
-namespace QuickRedis.Tests;
+namespace RedLens.Tests;
 
 public class AddRedisCache_Should
 {
@@ -157,7 +157,7 @@ public class AddRedisCache_Should
 
         services
             .AddSingleton(configuration)
-            .AddRedis(config =>
+            .AddRedLens(config =>
             {
                 config.AddRedisCache();
             });

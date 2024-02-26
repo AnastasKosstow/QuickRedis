@@ -1,10 +1,10 @@
-using QuickRedis.Configuration;
-using QuickRedis.Stream.Abstractions;
+using RedLens.Configuration;
+using RedLens.Stream.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddQuickRedis(config =>
+    .AddRedLens(config =>
     {
         config.AddRedisStreaming();
     });
