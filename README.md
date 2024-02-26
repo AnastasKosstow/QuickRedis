@@ -11,7 +11,7 @@ To use the library in your project, follow these steps:
      }
    ```
 
- - Add QuickRedis Fluent library in Program.cs with the functionality you want:
+ - Add RedLens Fluent library in Program.cs with the functionality you want:
    - Cache:
       ```C#
       builder.Services.AddRedLens(config => config.AddRedisCache());
@@ -114,7 +114,7 @@ Assuming we injected an ICache interface
 
 # Stream
 
-QuickRedis library supports Publish/Subscribe (Pub/Sub) messaging patterns through Redis streams, enabling applications to communicate asynchronously via messages. <br>
+RedLens library supports Publish/Subscribe (Pub/Sub) messaging patterns through Redis streams, enabling applications to communicate asynchronously via messages. <br>
 This section describes how to publish messages to a stream and subscribe to receive messages from a stream.
 
  - **Publish**
