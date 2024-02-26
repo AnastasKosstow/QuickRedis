@@ -4,9 +4,9 @@ Quick Start
 ## Configuration
 To use the library in your project, follow these steps:
 >
- - Add "QuickRedis" section in your appsetting.json file, and "ConnectionString" with valid redis connection.
+ - Add "RedLens" section in your appsetting.json file, and "ConnectionString" with valid redis connection.
    ```json
-     "QuickRedis": {
+     "RedLens": {
        "ConnectionString": "localhost:6379"
      }
    ```
@@ -14,18 +14,18 @@ To use the library in your project, follow these steps:
  - Add QuickRedis Fluent library in Program.cs with the functionality you want:
    - Cache:
       ```C#
-      builder.Services.AddQuickRedis(config => config.AddRedisCache());
+      builder.Services.AddRedLens(config => config.AddRedisCache());
       ```
  
     - Streaming
       ```C#
-      builder.Services.AddQuickRedis(config => config.AddRedisStreaming());
+      builder.Services.AddRedLens(config => config.AddRedisStreaming());
       ```
 
     - Or both
       ```C#
       builder.Services
-         .AddQuickRedis(config =>
+         .AddRedLens(config =>
          {
              config
                  .AddRedisCache() // Add redis cache
@@ -34,7 +34,7 @@ To use the library in your project, follow these steps:
       ```
 
 # Cache
-To use Redis cache, inject "ICache" interface from "QuickRedis.Cache" namespace
+To use Redis cache, inject "ICache" interface from "RedLens.Cache" namespace
 
 ### Features
  - Provides a simple and intuitive way to interact with Redis cache.
