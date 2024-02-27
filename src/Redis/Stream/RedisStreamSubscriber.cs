@@ -1,7 +1,7 @@
 using StackExchange.Redis;
 using System.Runtime.Serialization;
-using RedLens.Common.Extensions;
-using RedLens.Common.Serialization;
+using RedLens.Tools.Extensions;
+using RedLens.Tools.Serialization;
 using RedLens.Stream.Abstractions;
 
 namespace RedLens.Stream;

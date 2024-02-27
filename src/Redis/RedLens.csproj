@@ -7,6 +7,7 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/AnastasKosstow/QuickRedis</RepositoryUrl>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,14 +19,14 @@
     <PackageReference Include="StackExchange.Redis" Version="2.7.20" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Redis.Common\RedLens.Common.csproj" />
-  </ItemGroup>
-
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
 			<_Parameter1>Redis.Tests</_Parameter1>
 		</AssemblyAttribute>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\RedLens.Tools\RedLens.Tools.csproj" />
 	</ItemGroup>
 
 </Project>

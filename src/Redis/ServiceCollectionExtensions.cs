@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
-using RedLens.Common.Exceptions;
+using RedLens.Tools.Exceptions;
 
 namespace RedLens.Configuration;
 

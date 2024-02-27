@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RedLens.Cache;
-using RedLens.Common.Exceptions;
 using RedLens.Configuration;
+using RedLens.Tools.Exceptions;
 
 namespace RedLens.Tests;
 

@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using StackExchange.Redis;
 using RedLens.Cache.Options;
-using RedLens.Common.Exceptions;
+using RedLens.Tools.Exceptions;
 
 namespace RedLens.Cache;
 

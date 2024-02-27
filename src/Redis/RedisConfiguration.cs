@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RedLens.Stream;
 using RedLens.Cache;
-using RedLens.Common.Serialization;
+using RedLens.Tools.Serialization;
 using RedLens.Stream.Abstractions;
 
 namespace RedLens.Configuration;
