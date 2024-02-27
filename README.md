@@ -3,7 +3,12 @@ Quick Start
 
 ## Configuration
 To use the library in your project, follow these steps:
->
+
+ - Install RedLens package from `nuget`:
+   ```console
+   dotnet add package RedLens
+   ```
+
  - Add "RedLens" section in your appsetting.json file, and "ConnectionString" with valid redis connection.
    ```json
      "RedLens": {
